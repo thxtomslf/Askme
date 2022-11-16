@@ -1,0 +1,23 @@
+<div class="row pagination_block">
+        <div class="col-md-12 col-sm-12">
+            <nav aria-label="Search results pages">
+                <ul class="pagination">
+                    <li class="page-item" id="previous">
+                        <a class="page-link">Previous</a>
+                    </li>
+                    <li class="page-item active">
+                        <a class="page-link" href={% url "new_questions" number_of_questions_block=1%}>1</a>
+                    </li>
+                    <li class="page-item active" aria-current="page">
+                        <a class="page-link" href={% url "new_questions" number_of_questions_block=2%}>2</a>
+                    </li>
+                    <li class="page-item active">
+                        <a class="page-link" href={% url "new_questions" number_of_questions_block=3%}>3</a>
+                    </li>
+                    <li class="page-item active" id="next">
+                        <a class="page-link" href=" ">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+</div>

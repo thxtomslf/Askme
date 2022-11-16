@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block static_block %}
+<link rel="stylesheet" href={% static "css/question_block_style.css" %}>
+<link rel="stylesheet" href={% static "css/pagination_style.css" %}>
+<script type="text/javascript" src={% static "js/update_questions_list_script.js" %}></script>
+<script type="text/javascript" src={% static "js/pagination_script.js" %}></script>
+{% endblock %}
+
+
+{% block main_page_block %}
+
+<div class="row" id="title">
+    <h1>NewQuestions</h1>
+    <a href={% url "hot_questions" %}><h5>Most rated questions</h5></a>
+</div>
+
+
+
+{% for question in questions %}
+
+    {% include "parts/_question_item.html" %}
+
+{% endfor %}
+
+
+
+{% include "parts/_pagination.html" %}
+
+{% endblock %}

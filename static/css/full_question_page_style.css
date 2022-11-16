@@ -1,0 +1,148 @@
+.question_block {
+    background: #323131;
+    margin-right: 20px;
+}
+
+.question_title_block h1 {
+    -webkit-line-clamp: 1;
+}
+
+h1 {
+    color: white;
+}
+
+.question_bottom_block * {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.question_description_block p {
+    margin-top: 10px;
+}
+
+.question_block {
+    margin-top: 30px;
+    border-top: red solid 5px;
+    border-bottom: red solid 5px;
+    border-left: #18191c solid 15px;
+    border-right:  #18191c solid 15px;
+    border-radius: 10px;
+    height: 220px;
+}
+
+.avatar_and_rating {
+    /*border-right: #6a1a21 solid 2px;*/
+    display: flex;
+    justify-items: center;
+    flex-direction: column;
+}
+
+
+.avatar_and_rating .row {
+    /*outline: #0dcaf0 solid 2px;*/
+    height: fit-content;
+    margin-bottom: 20px;
+}
+
+.avatar_and_rating .row * {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+}
+
+.avatar_and_rating img {
+    width: 50%;
+    height: 100%;
+}
+
+.avatar_block img {
+    margin-top: 20px;
+    border-radius: 40px;
+    height: 60%;
+    width: 60%;
+}
+
+.rating_number {
+    margin-right: 20px;
+    font-size: 22px;
+}
+
+.rating_number p {
+    margin: 20%;
+    border-right: white solid 2px;
+    padding-right: 5px;
+}
+
+
+.like_dislike_buttons_group * {
+    line-height: 100%;
+}
+
+.like_dislike_buttons_block {
+    height: 100%;
+    width: 100%;
+    margin-bottom: 10px
+}
+
+.question_title_block {
+    height: fit-content;
+}
+
+.question_description_block {
+    height: 80%;
+}
+
+
+
+.question_info_block {
+    height: fit-content;
+}
+
+.full_question_block {
+    border-bottom: #6a1a21 solid 5px;
+}
+
+.answers_block {
+    margin-top: 40px;
+}
+
+.answers_block h1 {
+    color: white;
+}
+
+.answers_title {
+    margin-bottom: 30px;
+}
+
+.answer {
+    border: #6a1a21 solid 2px;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.correct_answer_checkbox {
+    color: white;
+}
+
+.make_answer_block {
+    border-top: #6a1a21 solid 5px;
+    margin-bottom: 30px;
+}
+
+.make_answer * {
+    margin-top: 20px;
+}
+
+.make_answer * {
+    display: flex;
+    flex-direction: column;
+}
+
+.make_answer button {
+    width: fit-content;
+    font-size: 18px;
+    font-weight: bold;
+}

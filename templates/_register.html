@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block static_block %}
+<link rel="stylesheet" href={% static "css/register_page_style.css" %}>
+{% endblock %}
+
+{% block main_page_block %}
+    
+<div class="row register_title">
+    <h1>Registration</h1>
+</div>
+
+<div class="row warning">
+    <p>Wrong password or email</p>
+</div>
+
+<div class="row register_page_input_block">
+    <div class="col-md-2 col-sm-2 col-xs-2">
+        <p>Login</p>
+    </div>
+    <div class="col-md-10 col-sm-10 col-xs-10 login_block">
+        <label><input class="form-control" type="text"></label>
+    </div>
+</div>
+
+<div class="row register_page_input_block">
+    <div class="col-md-2 col-sm-2 col-xs-2">
+        <p>Email</p>
+    </div>
+    <div class="col-md-10 col-sm-10 col-xs-10 email_block">
+        <label><input class="form-control" type="email"></label>
+    </div>
+</div>
+
+<div class="row register_page_input_block">
+    <div class="col-md-2 col-sm-2 col-xs-2">
+        <p>Nickname</p>
+    </div>
+    <div class="col-md-10 col-sm-10 col-xs-10 nickname_block">
+        <label><input class="form-control" type="text"></label>
+    </div>
+</div>
+
+
+<div class="row register_page_input_block">
+    <div class="col-md-2 col-sm-2 col-xs-2">
+        <p>Password</p>
+    </div>
+    <div class="col-md-10 col-sm-10 col-xs-10 password_block">
+        <label><input class="form-control" type="password"></label>
+    </div>
+</div>
+
+
+<div class="row register_page_input_block">
+    <div class="col-md-2 col-sm-2 col-xs-2">
+        <p>Repeat password</p>
+    </div>
+    <div class="col-md-10 col-sm-10 col-xs-10 password_block">
+        <label><input class="form-control" type="password"></label>
+    </div>
+</div>
+
+<div class="row register_page_input_block">
+    <div class="col-md-2 col-sm-12 col-xs-12">
+        <p>Upload avatar</p>
+    </div>
+    <div class="col-md-10 col-sm-12 col-xs-12 avatar_input_block">
+        <img src="../static/img/user_icon.jpg" alt="avatar">
+        <input type="file" class="form-control" id="avatar_input" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+        <p class="warning">incorrect file_type</p>
+        <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Upload</button>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block static_block %}
+
+<link rel="stylesheet" href={% static "css/full_question_page_style.css" %}>
+<link rel="stylesheet" href={% static "js/update_questions_list_script.js" %}>
+
+{% endblock %}
+
+{% block main_page_block %}
+
+<div class="row full_question_block">
+
+    <div class="col-md-2 col-sm-4 col-xs-12 avatar_and_rating">
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 avatar_block">
+                <a href=""><img src={% static "img/user_icon.jpg" %} alt="user_avatar"></a>
+            </div>
+        </div>
+
+        <div class="row user_name_block">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <a href="">{{ question.user_name }}</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 like_dislike_buttons_block">
+                <div class="rating_number">
+                    <p>{{ question.rating }}</p>
+                </div>
+                <div class="btn-group-vertical like_dislike_buttons_group" role="group" aria-label="Vertical radio toggle button group">
+                    <label class="btn btn-outline-light">+<input type="radio" class="btn-check" name="vbtn-radio" autocomplete="off"></label>
+                    <label class="btn btn-outline-light">-<input type="radio" class="btn-check" name="vbtn-radio" autocomplete="off"></label>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-10 col-sm-8 col-xs-11 question_info_block">
+
+        <div class="row question_title_block">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <h1 class="question_text">{{ question.title }}</h1>
+            </div>
+        </div>
+
+        <div class="row question_description_block">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <p class="question_text">{{ question.text }}</p>
+            </div>
+        </div>
+
+        <div class="row question_bottom_block">
+            <p>Tags
+                {% for tag in popular_tags %}
+                    <a href={% url "questions_by_tag" tag_title=tag%}>{{ tag }}</a>
+                {% endfor %}
+            </p>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="answers_block">
+
+    <div class="answers_title"><h1>Answers</h1></div>
+
+    {% for answer in answers %}
+
+        {% include "parts/answer_item.html" %}
+
+    {% endfor %}
+
+</div>
+
+<div class="row make_answer_block">
+
+    <div class="col-md-12 col-sm-12 col-xs-12 make_answer">
+        <label>
+            <textarea class="form-control" rows="10"></textarea>
+        </label>
+        <label>
+            <button type="button" class="btn btn-light">Answer</button>
+        </label>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block static_block %}
+<link rel="stylesheet" href={% static "css/question_creating_page_style.css" %}>
+<script type="text/javascript" src={% static "js/update_questions_list_script.js" %}></script>
+{% endblock %}
+
+
+{% block main_page_block %}
+<div class="row" id="title">
+    <h1>Create Questions</h1>
+</div>
+
+<div class="row question_creating_block">
+    <div class="col-md-1 col-sm-3 col-xs-1 input_field_headers">
+        <p>Title</p>
+    </div>
+
+    <div class="col-md-11 col-sm-9 col-xs-11 title_input_block">
+        <label><input class="form-control" type="text"></label>
+    </div>
+</div>
+
+<div class="row question_creating_block">
+    <div class="col-md-1 col-sm-3 col-xs-1 input_field_headers">
+        <p>Text</p>
+    </div>
+
+    <div class="col-md-11 col-sm-9 col-xs-11 question_input_block">
+        <label>
+            <textarea class="form-control" cols="40" rows="15"></textarea>
+        </label>
+    </div>
+</div>
+
+<div class="row question_creating_block">
+    <div class="col-md-1 col-sm-3 col-xs-1 input_field_headers">
+        <p>Tags</p>
+    </div>
+
+    <div class="col-md-11 col-sm-9 col-xs-11 tags_input_block">
+        <label><input class="form-control" type="text"></label>
+        <label><button type="button" class="btn btn-light">ASK</button></label>
+    </div>
+</div>
+
+{% endblock %}
