@@ -5,11 +5,9 @@
 }
 
 .pagination > li > a:focus,
-.pagination > li > a:hover,
-.pagination > li > span:focus,
-.pagination > li > span:hover
+.pagination > li > a:hover
 {
-    color: white;
+    color: #18191c;
     background-color: #eee;
     border-color: #ddd;
 }

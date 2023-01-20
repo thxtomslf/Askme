@@ -6,20 +6,20 @@
 
         <div class="row">
             <div class="col-md-12 col-sm-12 avatar_block">
-                <a href=""><img src={% static "img/user_icon.jpg" %} alt="user_avatar"></a>
+                <a href=""><img src={{ question.sender_id.avatar.url }} alt="user_avatar"></a>
             </div>
         </div>
 
         <div class="row user_name_block">
             <div class="col-md-12 col-sm-12 col-xs-12">
-                <a href="">{{ question.user_name }}</a>
+                <a href="">{{ question.sender_id.user.username }}</a>
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12 like_dislike_buttons_block">
                 <div class="rating_number">
-                    <p>{{ question.rating }}</p>
+                    <p>{{ question.likes }}</p>
                 </div>
                 <div class="btn-group-vertical like_dislike_buttons_group" role="group" aria-label="Vertical radio toggle button group">
                     <input type="radio" class="btn-check" name="vbtn-radio" autocomplete="off">
@@ -36,13 +36,13 @@
 
         <div class="row question_title_block">
             <div class="col-md-12 col-sm-12 col-xs-12">
-                <a href={% url "question" questionId=question.id %}><h1 class="question_text">{{ question.title }}</h1></a>
+                <a href={% url "question" questionId=question.id %}><h1 class="question_text">{{ question.header }}</h1></a>
             </div>
         </div>
 
         <div class="row question_description_block">
             <div class="col-md-12 col-sm-12 col-xs-12">
-                <p class="question_text">{{ question.text }}</p>
+                <p class="question_text">{{ question.body }}</p>
             </div>
         </div>
 
@@ -54,8 +54,8 @@
 
             <div class="col-md-6 col-sm-6 col-xs-1">
                 <p class="question_text">Tags:
-                {% for tag in question.tags %}
-                    <a href={% url "questions_by_tag" tag_title=tag%}> {{ tag }} </a>
+                {% for tag in question.tag.all %}
+                    <a href={% url "questions_by_tag" tag_title=tag.title%}> {{ tag.title }} </a>
                 {% endfor %}
                 </p>
             </div>

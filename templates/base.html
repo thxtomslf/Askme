@@ -22,7 +22,7 @@
 <header>
     <div class="row">
         <div class="col-md-3 col-sm-3 header_element" id="logo_block">
-            <a href="/"><img class="header_image" src={% static "img/logo.png" %} alt="ASKME"></a>
+            <a href="{% url "new_questions" %}"><img class="header_image" src={% static "img/logo.png" %} alt="ASKME"></a>
         </div>
 
         <div class="col-md-6 col-sm-6 header_element" id="search_block">
@@ -73,7 +73,7 @@
             <div class="col-md-12 col-sm-12">
 
                 {% for tag in popular_tags %}
-                    <a href={% url "questions_by_tag" tag_title=tag%}><p>{{ tag }}</p></a>
+                    <a href={% url "questions_by_tag" tag_title=tag.title%}><p>{{ tag.title }}</p></a>
                     {% endfor %}
             </div>
         </div>
@@ -88,7 +88,7 @@
             <div class="col-md-12 col-sm-12">
                 <ul>
                     {% for member in best_members %}
-                        <li><a href="">{{ member }}</a></li>
+                        <li><a href="">{{ member.user.username }}</a></li>
                     {% endfor %}
                 </ul>
             </div>
