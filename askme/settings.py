@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app.apps.AppConfig',
     'askme'
+    # 'bootstrap5'
 ]
 
 MIDDLEWARE = [
@@ -129,7 +130,6 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_URL = 'static/'
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 

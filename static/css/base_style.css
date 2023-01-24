@@ -199,3 +199,19 @@ footer {
     width: 1em;
     margin-left: -1em;
 }
+
+#ask_link {
+    font-size: 20px;
+}
+
+#nickname {
+    overflow: hidden;
+    max-width: 50ch;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: yellow;
+}
+
+#nickname:hover {
+    color: #6a1a21;
+}

@@ -3,19 +3,17 @@
         <div class="col-md-6" id="settings_log_out">
 
             <div class="row">
-                <div class="col-12"><a href={% url "settings" %}>settings</a></div>
+                <div class="col-12"><a href={% url "settings" %}><p id="nickname">{{ user.profile.nickname }}</p></a></div>
             </div>
 
             <div class="row">
-                <div class="col-12"><a href="">log out</a></div>
+                <div class="col-12"><a href="{% url "logout" %}?continue={{ current_path }}">log out</a></div>
             </div>
 
         </div>
 
         <div class="col-md-6" id="user_icon">
-            <a href="#">
-                <img class="header_image" src="../static/img/user_icon.jpg" alt="USER"/>
-            </a>
+            <img class="header_image" src={{ user.profile.avatar.url }} alt="USER"/>
         </div>
     </div>
 </div>

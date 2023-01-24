@@ -29,23 +29,29 @@
             <form method="post">
                 <div class="row">
 
-                    <div class="col-md-10 col-sm-10" id="input">
+                    <div class="col-md-8 col-sm-10" id="input">
                         <input class="form-control" type="text" placeholder="How to..."/>
                     </div>
 
                     <div class="col-md-2 col-sm-2" id="search_button_block">
                         <button type="button" class="btn btn-outline-light" id="search_button">Search</button>
                     </div>
-
+                    <div class="col-md-2 col-sm-2" id="ask_link">
+                        <div><a href="{% url "ask_question" %}">ASK</a></div>
+                    </div>
                 </div>
             </form>
+
         </div>
 
         {% block authorization_block %}
-
+            {% if user.is_authenticated %}
+                {% include "parts/authorized_user.html" %}
+            {% else %}
+                {% include "parts/unauthorized_user.html" %}
+            {% endif %}
         {% endblock %}
 
-        {% include "parts/unauthorized_user.html" %}
 
     </div>
 </header>
@@ -107,7 +113,7 @@
             <img class="footer_logo" src={% static "img/logo.png" %} alt="logo">
         </div>
         <div class="col-md-8 col-sm-8 site_description_block">
-            <div><p><span>AskThem.ru</span> - сайт для поиска ответов на жизненно важные и очень занимательные вопросы.
+            <div><p><span>AskMe.ru</span> - сайт для поиска ответов на жизненно важные и очень занимательные вопросы.
                 Здесь вы можете задать любой вопрос. Даже самый, на ваш взгляд, глупый. Никакого осуждения, никаких оскорблений - только взаимопомощь.</p></div>
         </div>
         <div class="col-md-2 col-sm-2 links_block">

@@ -23,6 +23,16 @@ h1 {
     display: flex;
 }
 
+.password_block input {
+    border-radius: 8px;
+    height: 35px;
+}
+
+.login_block input {
+    border-radius: 8px;
+    height: 35px;
+}
+
 .login_block *, .password_block * {
     width: 60%;
 }

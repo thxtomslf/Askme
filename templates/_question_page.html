@@ -57,7 +57,7 @@
 
         <div class="row question_bottom_block">
             <p>Tags
-                {% for tag in popular_tags %}
+                {% for tag in question.tag.all %}
                     <a href={% url "questions_by_tag" tag_title=tag.title%}>{{ tag.title }}</a>
                 {% endfor %}
             </p>
@@ -80,17 +80,35 @@
 </div>
 
 <div class="row make_answer_block">
+    <form novalidate action="{% url "question" questionId=question_id  %}" method="post">
+    {% csrf_token %}
+        <div class="col-md-12 col-sm-12 col-xs-12 make_answer">
 
-    <div class="col-md-12 col-sm-12 col-xs-12 make_answer">
-        <label>
-            <textarea class="form-control" rows="10"></textarea>
-        </label>
-        <label>
-            <button type="button" class="btn btn-light">Answer</button>
-        </label>
+            {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                    <div class="row warning">
+                     <p>{{error}}</p>
+                    </div>
+                {% endfor %}
+            {% endif %}
 
-    </div>
 
+            {% if form.body.errors %}
+                {% for error in form.body.errors %}
+                    <div class="row warning">
+                        <p>{{error}}</p>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <label for="{{ form.body.id_for_label }}">
+                {{ form.body }}
+            </label>
+            <label>
+                <button type="submit" class="btn btn-light">Answer</button>
+            </label>
+
+        </div>
+    </form>
 </div>
 
 {% endblock %}

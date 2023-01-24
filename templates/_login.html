@@ -13,34 +13,62 @@
     <h1>Log In</h1>
 </div>
 
-<div class="row warning">
-    <p>Wrong password or email</p>
-</div>
-<div class="row login_page_input_block">
-    <div class="col-md-2 col-sm-2 col-xs-2">
-        <p>Login</p>
-    </div>
-    <div class="col-md-10 col-sm-10 col-xs-10 login_block">
-        <label><input class="form-control" type="text"></label>
-    </div>
-</div>
-<div class="row login_page_input_block">
-    <div class="col-md-2 col-sm-2 col-xs-2">
-        <p>Password</p>
-    </div>
-    <div class="col-md-10 col-sm-10 col-xs-10 password_block">
-        <label><input class="form-control" type="password"></label>
-    </div>
-</div>
+{% if redirect_param == "" %}
+<form novalidate action="/login" method="post">
+{% else %}
+<form novalidate action="/login?continue={{ redirect_param }}" method="post">
+{% endif %}
+    {% csrf_token %}
+    {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+            <div class="row warning">
+                <p>{{error}}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
 
-<div class="row login_page_input_block">
-    <div class="col-md-2 col-sm-2 col-xs-2">
+    {% if form.username.errors %}
+        {% for error in form.username.errors %}
+            <div class="row warning">
+                <p>{{error}}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div class="row login_page_input_block">
+        <div class="col-md-2 col-sm-2 col-xs-2">
+            <p>Login</p>
+        </div>
+        <div class="col-md-10 col-sm-10 col-xs-10 login_block">
+            <label for="{{ form.username.id_for_label }}">{{ form.username }}</label>
+        </div>
     </div>
-    <div class="col-md-10 col-sm-10 col-xs-10 log_in_button_block">
-        <label><button type="button" class="btn btn-light">Log In</button></label>
 
-        <a href={% url "signup" %}>Create new account</a>
+    {% if form.password.errors %}
+        {% for error in form.password.errors %}
+            <div class="row warning">
+                <p>{{error}}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div class="row login_page_input_block">
+        <div class="col-md-2 col-sm-2 col-xs-2">
+            <p>Password</p>
+        </div>
+        <div class="col-md-10 col-sm-10 col-xs-10 password_block">
+            <label for="{{ form.password.id_for_label }}">{{ form.password }}</label>
+        </div>
     </div>
-</div>
+
+
+    <div class="row login_page_input_block">
+        <div class="col-md-2 col-sm-2 col-xs-2">
+        </div>
+        <div class="col-md-10 col-sm-10 col-xs-10 log_in_button_block">
+            <label><button type="submit" class="btn btn-light">Log In</button></label>
+            <a href={% url "signup" %}>Create new account</a>
+        </div>
+    </div>
+</form>
+
 
 {% endblock %}

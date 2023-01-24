@@ -1,7 +1,9 @@
+import datetime
 import random
 
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 from askme.settings import MEDIA_ROOT
 
@@ -13,7 +15,8 @@ class ProfileManager(models.Manager):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, models.CASCADE)
-    avatar = models.ImageField(upload_to="./")
+    nickname = models.CharField(max_length=50, default="nickname")
+    avatar = models.ImageField(blank=True, upload_to='', default='shrek.jpeg')
 
     objects = ProfileManager()
 
@@ -38,7 +41,7 @@ class Tag(models.Model):
 
 class QuestionManager(models.Manager):
     def get_newest_questions(self):
-        return self.select_related("sender_id").order_by('likes')
+        return self.select_related("sender_id").order_by('-date', '-time')
 
     def get_questions_by_tag(self, tag: str):
         return self.filter(tag__title__exact=tag).select_related("sender_id")
@@ -53,6 +56,7 @@ class Question(models.Model):
     sender_id = models.ForeignKey(Profile, models.SET_NULL, null=True)
     tag = models.ManyToManyField(Tag)
     date = models.DateField(auto_now_add=True)
+    time = models.TimeField(default=timezone.now().time())
     likes = models.IntegerField(default=0)
 
     objects = QuestionManager()

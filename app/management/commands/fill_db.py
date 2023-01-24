@@ -5,6 +5,7 @@ from os import listdir
 from typing import List
 
 import random_word
+from django.contrib.auth.hashers import make_password
 from django.core.management.base import BaseCommand
 from askme.models import Profile, Question, Answer, Tag, AnswerLike, QuestionLike
 from random_word import RandomWords
@@ -33,20 +34,30 @@ class Command(BaseCommand):
         self.fill_answers(ratio, text, users, questions)
         print("[DEBUG] Answers, likes and tags written")
 
+    def fix(self):
+        for profile_id in range(1467, 10163):
+            profile = Profile.objects.get(id=profile_id)
+            profile.nickname = profile.user.username.lower()
+            profile.save()
+
+            profile.user.password = make_password(profile.user.password)
+            profile.user.save()
+
     def fill_users(self, ratio: int, text: List[str]):
         profiles = []
         users = []
-        files = listdir(MEDIA_ROOT + "\\image")
+        files = listdir(MEDIA_ROOT)
         for i in range(ratio):
             word = text[i]
             users.append(User(last_login=datetime.datetime.now(),
-                              password=word,
+                              password=make_password(word),
                               email=f"{word}@mail.ru",
                               username=word.capitalize())
                          )
             profiles.append(Profile(
                 avatar=random.choice(files),
-                user=users[-1])
+                user=users[-1],
+                nickname=word)
             )
 
         for i in range(0, len(users), 500):
@@ -89,7 +100,7 @@ class Command(BaseCommand):
                     question_id=question,
                     user_id=users[random.randint(0, len(users) - 1)])
                 )
-        print(len(rating))
+
         for i in range(0, len(questions), 500):
             if i + 500 >= len(questions):
                 Question.objects.bulk_create(questions[i:len(questions)])
@@ -138,13 +149,15 @@ class Command(BaseCommand):
                     answer_id=answer,
                     user_id=users[random.randint(0, len(users) - 1)])
                 )
+
         for i in range(0, len(answers) - 1, 500):
             if i + 500 >= len(answers):
                 Answer.objects.bulk_create(answers[i:len(answers)])
             else:
                 Answer.objects.bulk_create(answers[i:i + 500])
+
         for i in range(0, len(rating) - 1, 500):
-            if i + 500 >= len(answers):
+            if i + 500 >= len(rating):
                 AnswerLike.objects.bulk_create(rating[i:len(rating)])
             else:
                 AnswerLike.objects.bulk_create(rating[i:i + 500])

@@ -13,11 +13,24 @@ h1 {
     justify-content: flex-end;
 }
 
-.tags_input_block, .question_input_block, .title_input_block {
+.tags_input_block *, .question_input_block *, .title_input_block * {
     display: flex;
     flex-direction: column;
 }
 
 .tags_input_block button {
     margin-top: 20px;
+}
+
+.button * {
+    display: block; !important;
+}
+
+.warning p {
+    color: red;
+    /*display: none;*/
+}
+
+input, textarea {
+    border-radius: 8px;
 }

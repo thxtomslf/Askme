@@ -31,8 +31,7 @@
     width: 70%;
 }
 
-.warning {
+.warning * {
     font-size: 15px !important;
     color: red;
-    display: none;
 }

@@ -2,7 +2,7 @@
 <div class="col-md-3 col-sm-3 header_element" id="unauthorized_user_block">
     <div class="row">
         <div class="col-md-6 col-sm-6" id="settings_log_in">
-            <a href={% url "login" %}>log in</a>
+            <a href={% url "login" %}?continue={{ current_path }}>log in</a>
         </div>
         <div class="col-md-6 col-sm-6" id="settings_register">
             <a href={% url "signup" %}>register</a>

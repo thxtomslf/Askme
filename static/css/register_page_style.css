@@ -1,3 +1,8 @@
+input {
+    border-radius: 8px;
+    height: 35px;
+}
+
 .register_page_input_block {
     margin-bottom: 20px;
 }
@@ -26,6 +31,8 @@
 
 .register_page_input_block input {
     width: 50%;
+    border-radius: 8px;
+    height: 35px;
 }
 
 .register_page_input_block img, .register_page_input_block button {
@@ -34,6 +41,10 @@
 
 .avatar_input_block * {
     margin-bottom: 15px;
+}
+
+.avatar_input_block img {
+    display: none;
 }
 
 .avatar_input_block .warning {
