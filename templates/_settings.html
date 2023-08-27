@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block static_block %}
+<script type="text/javascript" src={% static "js/image_preview_script.js" %}></script>
+<link rel="stylesheet" href={% static "css/settings_style.css" %}>
+{% endblock %}
+
+{% block main_page_block %}
+<div class="row settings_title_block">
+    <h1>Settings: {{ user.profile.nickname }}</h1>
+</div>
+<form novalidate action="/settings" method="post", enctype="multipart/form-data">
+    {% csrf_token %}
+    {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+            <div class="row warning">
+                <p>{{error}}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+
+    {% if form.email.errors %}
+        {% for error in form.email.errors %}
+            <div class="row warning">
+                <p>{{error}}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div class="row settings_element">
+        <div class="col-md-2 col-sm-12 col-xs-12">
+            <p>Email</p>
+        </div>
+        <div class="col-md-10 col-sm-12 col-xs-12 email_input_block">
+            <label for="{{ form.email.id_for_label }}">{{ form.email }}</label>
+        </div>
+    </div>
+
+
+    {% if form.nickname.errors %}
+        {% for error in form.nickname.errors %}
+            <div class="row warning">
+                <p>{{error}}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div class="row settings_element">
+        <div class="col-md-2 col-sm-12 col-xs-12">
+            <p>Nickname</p>
+        </div>
+        <div class="col-md-10 col-sm-12 col-xs-12 nick_input_block">
+            <label for="{{ form.nickname.id_for_label }}">{{ form.nickname }}</label>
+        </div>
+    </div>
+
+
+    {% if form.avatar.errors %}
+        {% for error in form.avatar.errors %}
+            <div class="row warning">
+                <p>{{error}}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div class="row settings_element">
+        <div class="col-md-2 col-sm-12 col-xs-12">
+            <p>Upload avatar</p>
+        </div>
+        <div class="col-md-10 col-sm-12 col-xs-12 avatar_input_block">
+            <img src="{{ user.profile.avatar.url }}" alt="avatar" id="preview">
+            <label for="{{ form.avatar.id_for_label }}">{{ form.avatar }}</label>
+            <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">Upload</button>
+        </div>
+    </div>
+</form>
+{% endblock %}

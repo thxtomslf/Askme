@@ -1,0 +1,37 @@
+.row h1 {
+    color: white;
+}
+
+.settings_element p {
+    font-size: 22px;
+}
+
+.settings_title_block {
+    margin-bottom: 30px;
+}
+
+.settings_element {
+    margin-bottom: 20px;
+}
+
+.login_input_block, .email_input_block, .nick_input_block, .avatar_input_block {
+    display: flex;
+    flex-direction: column;
+}
+
+.avatar_input_block {
+    width: 20%;
+}
+
+.avatar_input_block * {
+    margin-bottom: 15px;
+}
+
+.login_input_block *, .email_input_block *, .nick_input_block * {
+    width: 70%;
+}
+
+.warning * {
+    font-size: 15px !important;
+    color: red;
+}

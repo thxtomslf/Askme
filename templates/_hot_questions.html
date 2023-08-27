@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block static_block %}
+<link rel="stylesheet" href={% static "css/question_block_style.css" %}>
+<link rel="stylesheet" href={% static "css/pagination_style.css" %}>
+{% endblock %}
+
+
+{% block main_page_block %}
+
+<div class="row" id="title">
+    <h1>Hot questions</h1>
+</div>
+
+{% for question in page_obj %}
+
+    {% include "parts/_question_item.html" %}
+
+{% endfor %}
+
+{% include "parts/_pagination.html" %}
+
+{% endblock %}

@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block static_block %}
+
+<link rel="stylesheet" href={% static "css/full_question_page_style.css" %}>
+<link rel="stylesheet" href={% static "js/update_questions_list_script.js" %}>
+
+{% endblock %}
+
+{% block main_page_block %}
+
+<div class="row full_question_block">
+
+    <div class="col-md-2 col-sm-4 col-xs-12 avatar_and_rating">
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 avatar_block">
+                <a href=""><img src={{question.sender_id.avatar.url}} alt="user_avatar"></a>
+            </div>
+        </div>
+
+        <div class="row user_name_block">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <a href="">{{ question.sender_id.user.username }}</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 like_dislike_buttons_block">
+                <div class="rating_number">
+                    <p>{{ question.likes }}</p>
+                </div>
+                <div class="btn-group-vertical like_dislike_buttons_group" role="group" aria-label="Vertical radio toggle button group">
+                    <label class="btn btn-outline-light">+<input type="radio" class="btn-check" name="vbtn-radio" autocomplete="off"></label>
+                    <label class="btn btn-outline-light">-<input type="radio" class="btn-check" name="vbtn-radio" autocomplete="off"></label>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-10 col-sm-8 col-xs-11 question_info_block">
+
+        <div class="row question_title_block">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <h1 class="question_text">{{ question.header }}</h1>
+            </div>
+        </div>
+
+        <div class="row question_description_block">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <p class="question_text">{{ question.body }}</p>
+            </div>
+        </div>
+
+        <div class="row question_bottom_block">
+            <p>Tags
+                {% for tag in question.tag.all %}
+                    <a href={% url "questions_by_tag" tag_title=tag.title%}>{{ tag.title }}</a>
+                {% endfor %}
+            </p>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="answers_block">
+
+    <div class="answers_title"><h1>Answers</h1></div>
+
+    {% for answer in answers %}
+
+        {% include "parts/answer_item.html" %}
+
+    {% endfor %}
+
+</div>
+
+<div class="row make_answer_block">
+    <form novalidate action="{% url "question" questionId=question_id  %}" method="post">
+    {% csrf_token %}
+        <div class="col-md-12 col-sm-12 col-xs-12 make_answer">
+
+            {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                    <div class="row warning">
+                     <p>{{error}}</p>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+
+            {% if form.body.errors %}
+                {% for error in form.body.errors %}
+                    <div class="row warning">
+                        <p>{{error}}</p>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <label for="{{ form.body.id_for_label }}">
+                {{ form.body }}
+            </label>
+            <label>
+                <button type="submit" class="btn btn-light">Answer</button>
+            </label>
+
+        </div>
+    </form>
+</div>
+
+{% endblock %}

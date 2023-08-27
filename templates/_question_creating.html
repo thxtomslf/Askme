@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block static_block %}
+<link rel="stylesheet" href={% static "css/question_creating_page_style.css" %}>
+<script type="text/javascript" src={% static "js/update_questions_list_script.js" %}></script>
+{% endblock %}
+
+
+{% block main_page_block %}
+<div class="row" id="title">
+    <h1>Create Questions</h1>
+</div>
+
+<form novalidate action="/ask" method="post">
+    {% csrf_token %}
+    {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+            <div class="row warning">
+                <p>{{error}}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+
+    {% if form.header.errors %}
+        {% for error in form.header.errors %}
+            <div class="row warning">
+                <p>{{error}}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div class="row question_creating_block">
+        <div class="col-md-1 col-sm-3 col-xs-1 input_field_headers">
+            <p>Title</p>
+        </div>
+
+        <div class="col-md-11 col-sm-9 col-xs-11 title_input_block">
+            <label for="{{ form.header.id_for_label }}">{{ form.header }}</label>
+        </div>
+    </div>
+
+
+    {% if form.body.errors %}
+        {% for error in form.body.errors %}
+            <div class="row warning">
+                <p>{{error}}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div class="row question_creating_block">
+        <div class="col-md-1 col-sm-3 col-xs-1 input_field_headers">
+            <p>Text</p>
+        </div>
+
+        <div class="col-md-11 col-sm-9 col-xs-11 question_input_block">
+            <label for="{{ form.body.id_for_label }}">
+                {{ form.body }}
+            </label>
+        </div>
+    </div>
+
+    {% if form.tag.errors %}
+        {% for error in form.tag.errors %}
+            <div class="row warning">
+                <p>{{error}}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div class="row question_creating_block">
+        <div class="col-md-1 col-sm-3 col-xs-1 input_field_headers">
+            <p>Tags</p>
+        </div>
+
+        <div class="col-md-11 col-sm-9 col-xs-11 tags_input_block">
+            <label for="{{ form.tag.id_for_label }}">{{ form.tag }}</label>
+            <div class="button">
+                <label><button type="submit" class="btn btn-light">ASK</button></label>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,47 @@
+h1 {
+    color: white;
+}
+
+.warning p {
+    color: red;
+    /*display: none;*/
+}
+
+.log_in_title {
+    margin-bottom: 20px;
+}
+
+.login_page_input_block {
+    margin-bottom: 20px;
+}
+
+.login_page_input_block p {
+    font-size: 20px;
+}
+
+.login_block, .password_block {
+    display: flex;
+}
+
+.password_block input {
+    border-radius: 8px;
+    height: 35px;
+}
+
+.login_block input {
+    border-radius: 8px;
+    height: 35px;
+}
+
+.login_block *, .password_block * {
+    width: 60%;
+}
+
+.log_in_button_block {
+    display: flex;
+    flex-direction: column;
+}
+
+.log_in_button_block * {
+    margin-bottom: 10px;
+}

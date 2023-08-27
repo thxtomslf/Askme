@@ -1,0 +1,45 @@
+{% load static %}
+
+
+<div class="row answer" id="{{ answer.id }}">
+
+        <div class="col-md-2 col-sm-4 col-xs-12 avatar_and_rating">
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12 avatar_block">
+                    <a href=""><img src={{ answer.sender_id.avatar.url }} alt="user_avatar"></a>
+                </div>
+            </div>
+
+            <div class="row user_name_block">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <a href="">{{ answer.sender_id.user.username }}</a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12 like_dislike_buttons_block">
+                    <div class="rating_number">
+                        <p>{{ answer.likes }}</p>
+                    </div>
+                    <div class="btn-group-vertical like_dislike_buttons_group" role="group" aria-label="Vertical radio toggle button group">
+                        <label class="btn btn-outline-light">+<input type="radio" class="btn-check" name="vbtn-radio" autocomplete="off"></label>
+                        <label class="btn btn-outline-light">-<input type="radio" class="btn-check" name="vbtn-radio" autocomplete="off"></label>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-10 col-sm-8 col-xs-11 question_info_block">
+
+            <div class="row question_description_block">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <p class="question_text">{{ answer.body }}</p>
+                </div>
+            </div>
+
+
+        </div>
+
+</div>

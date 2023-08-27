@@ -1,0 +1,19 @@
+<div class="col-md-3 col-sm-3 header_element" id="authorized_user_block">
+    <div class="row">
+        <div class="col-md-6" id="settings_log_out">
+
+            <div class="row">
+                <div class="col-12"><a href={% url "settings" %}><p id="nickname">{{ user.profile.nickname }}</p></a></div>
+            </div>
+
+            <div class="row">
+                <div class="col-12"><a href="{% url "logout" %}?continue={{ current_path }}">log out</a></div>
+            </div>
+
+        </div>
+
+        <div class="col-md-6" id="user_icon">
+            <img class="header_image" src={{ user.profile.avatar.url }} alt="USER"/>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel = "icon" href={% static "img/loupe.png" %} type="image/x-icon">
+    <link rel="stylesheet" href={% static "css/bootstrap.css" %}>
+    <link rel="stylesheet" href={% static "css/base_style.css" %}>
+    {% block static_block %}
+
+    {% endblock %}
+    <script type="text/javascript" src={% static "js/font_size_script.js" %}></script>
+    <title>Askme</title>
+</head>
+<body>
+
+<header>
+    <div class="row">
+        <div class="col-md-3 col-sm-3 header_element" id="logo_block">
+            <a href="{% url "new_questions" %}"><img class="header_image" src={% static "img/logo.png" %} alt="ASKME"></a>
+        </div>
+
+        <div class="col-md-6 col-sm-6 header_element" id="search_block">
+            <form method="post">
+                <div class="row">
+
+                    <div class="col-md-8 col-sm-10" id="input">
+                        <input class="form-control" type="text" placeholder="How to..."/>
+                    </div>
+
+                    <div class="col-md-2 col-sm-2" id="search_button_block">
+                        <button type="button" class="btn btn-outline-light" id="search_button">Search</button>
+                    </div>
+                    <div class="col-md-2 col-sm-2" id="ask_link">
+                        <div><a href="{% url "ask_question" %}">ASK</a></div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+
+        {% block authorization_block %}
+            {% if user.is_authenticated %}
+                {% include "parts/authorized_user.html" %}
+            {% else %}
+                {% include "parts/unauthorized_user.html" %}
+            {% endif %}
+        {% endblock %}
+
+
+    </div>
+</header>
+
+
+
+<div class="row" id="page_block">
+    <div class="col-md-9 col-sm-9 col-xs-12" id="main_page_block">
+
+        {% block main_page_block %}
+
+        {% endblock %}
+
+    </div>
+
+    <div class="col-md-3 col-sm-3 d-none d-sm-block" id="tags_and_best_members_block">
+
+        <div class="row" id="tag_title_block">
+            <div class="col-md-12 col-sm-12">
+                <h1>Popular tags</h1>
+            </div>
+        </div>
+
+        <div class="row" id="tags">
+            <div class="col-md-12 col-sm-12">
+
+                {% for tag in popular_tags %}
+                    <a href={% url "questions_by_tag" tag_title=tag.title%}><p>{{ tag.title }}</p></a>
+                    {% endfor %}
+            </div>
+        </div>
+
+        <div class="row" id="best_members_title">
+            <div class="col-md-12 col-sm-12">
+                <h1>Best members</h1>
+            </div>
+        </div>
+
+        <div class="row" id="best_members_list">
+            <div class="col-md-12 col-sm-12">
+                <ul>
+                    {% for member in best_members %}
+                        <li><a href="">{{ member.user.username }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<footer>
+    <div class="row footer_block">
+        <div class="col-md-2 col-sm-2 footer_logo_block">
+            <img class="footer_logo" src={% static "img/logo.png" %} alt="logo">
+        </div>
+        <div class="col-md-8 col-sm-8 site_description_block">
+            <div><p><span>AskMe.ru</span> - сайт для поиска ответов на жизненно важные и очень занимательные вопросы.
+                Здесь вы можете задать любой вопрос. Даже самый, на ваш взгляд, глупый. Никакого осуждения, никаких оскорблений - только взаимопомощь.</p></div>
+        </div>
+        <div class="col-md-2 col-sm-2 links_block">
+            <p>Contacts:</p>
+            <ul>
+                <li><a href="https://t.me/repness" target="_blank">Telegram</a></li>
+                <li><a href="https://github.com/thxtomslf" target="_blank">GitHub</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+input {
+    border-radius: 8px;
+    height: 35px;
+}
+
+.register_page_input_block {
+    margin-bottom: 20px;
+}
+
+.register_title h1 {
+    color: white;
+}
+
+.register_title {
+    margin-bottom: 20px;
+}
+
+.warning p {
+    color: red;
+    /*display: none;*/
+}
+
+.register_page_input_block p {
+    font-size: 20px;
+}
+
+.register_page_input_block div {
+    display: flex;
+    flex-direction: column;
+}
+
+.register_page_input_block input {
+    width: 50%;
+    border-radius: 8px;
+    height: 35px;
+}
+
+.register_page_input_block img, .register_page_input_block button {
+    width: 20%;
+}
+
+.avatar_input_block * {
+    margin-bottom: 15px;
+}
+
+.avatar_input_block img {
+    display: none;
+}
+
+.avatar_input_block .warning {
+    color: red;
+    /*display: none;*/
+}
